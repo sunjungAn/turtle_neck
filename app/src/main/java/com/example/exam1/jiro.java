@@ -83,14 +83,22 @@ public class jiro extends AppCompatActivity implements SensorEventListener {
     // consider storing these readings as unit vectors.
     @Override
     public void onSensorChanged(SensorEvent event) {
-        final float[] rotationMatrix = new float[9];
-        SensorManager.getRotationMatrix(rotationMatrix, null,
-                accelerometerReading, magnetometerReading);
-        final float[] orientationAngles = new float[3];
-        SensorManager.getOrientation(rotationMatrix, orientationAngles);
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+        float ax, ay, az, anglexy, anglexz, angleyz;
+
+        ax = x;
+        ay = y;
+        az = z;
+
+        anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));
+        anglexz = (float)(Math.atan2(ax, az) / (Math.PI / 180));
+        angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
+
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             textView =  findViewById(R.id.textView);
-            textView.setText("value_x"+event.values[0]+"\nvalue_y"+event.values[1]+"\nvalue_z"+ event.values[2]);
+            textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
 
         }
     }
