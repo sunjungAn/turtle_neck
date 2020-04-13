@@ -14,17 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class jiro extends AppCompatActivity implements SensorEventListener {
+public class jiro extends AppCompatActivity implements SensorEventListener { //SensorEventListener를 사용한다.
 
     Button toast_btn;
     TextView textView;
 
-    private SensorManager sensorManager;
-    private final float[] accelerometerReading = new float[3];
-    private final float[] magnetometerReading = new float[3];
+    private SensorManager sensorManager; //객체 생성
+    private final float[] accelerometerReading = new float[3]; //가속도
+    private final float[] magnetometerReading = new float[3]; //
 
 
-    private final float[] rotationMatrix = new float[9];
+    private final float[] rotationMatrix = new float[9];  //회전값
     private final float[] orientationAngles = new float[3];
 
 
@@ -45,12 +45,12 @@ public class jiro extends AppCompatActivity implements SensorEventListener {
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {  //아직 사용X
         // Do something here if sensor accuracy changes.
         // You must implement this callback in your code.
     }
     @Override
-    protected void onResume() {
+    protected void onResume() { //아직 사용X
         super.onResume();
 
         // Get updates from the accelerometer and magnetometer at a constant rate.
@@ -72,7 +72,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener {
         }
     }
     @Override
-    protected void onPause() {
+    protected void onPause() { //아직 사용X
         super.onPause();
 
         // Don't receive any more updates from either sensor.
@@ -82,7 +82,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener {
     // Get readings from accelerometer and magnetometer. To simplify calculations,
     // consider storing these readings as unit vectors.
     @Override
-    public void onSensorChanged(SensorEvent event) {
+    public void onSensorChanged(SensorEvent event) { //각도가 움직일때 마다 각을 바꿔준다.
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
@@ -92,7 +92,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener {
         ay = y;
         az = z;
 
-        anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));
+        anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));  //radian으로 바꿔준다.
         anglexz = (float)(Math.atan2(ax, az) / (Math.PI / 180));
         angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
 

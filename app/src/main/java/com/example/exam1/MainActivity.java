@@ -18,12 +18,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        toast_btn = findViewById(R.id.toast_btn);
+        toast_btn = findViewById(R.id.toast_btn); //post btn의 주소값 가져옴
         toast_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //onClick method
                 Toast toast1 = Toast.makeText(MainActivity.this, "허리up", Toast.LENGTH_LONG);
-                toast1.show();
+                //Toast라는 객체 makeText  6초정도
+                toast1.show();//보여줘라
             }
         });
     }
