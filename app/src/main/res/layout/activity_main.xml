@@ -110,6 +110,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="TextView" />
+            <Button
+                android:layout_width="wrap_content"
+                android:id = "@+id/execute"
+                android:layout_height="wrap_content"
+                android:text = "실행"
+                android:textSize = "30dp"
+                android:layout_gravity="center"
+                android:fontFamily="@font/imsosobold"
+                />
         </LinearLayout>
         </LinearLayout>
 

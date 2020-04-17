@@ -20,8 +20,10 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
 
     Button toast_btn;
     TextView textView;
+    Button execute;
 
     private SensorManager sensorManager; //객체 생성
+    static int exe = 0;
     private final float[] accelerometerReading = new float[3]; //가속도
     private final float[] magnetometerReading = new float[3];
     private WindowManager.LayoutParams params;
@@ -39,7 +41,26 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         toast_btn = findViewById(R.id.toast_btn);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         params = getWindow().getAttributes();
+        execute = findViewById(R.id.execute);
+        execute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                if(exe == 0){
+                    exe = 1;
+                    Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
+                    toast1.show();
+                    execute.setText("중지");
+
+                }
+                else if(exe == 1){
+                    exe = 0;
+                    Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
+                    toast1.show();
+                    execute.setText("실행");
+                }
+            }
+        });
 
         toast_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +131,16 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             textView =  findViewById(R.id.textView);
             textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
-            if(80<=anglexy && anglexy<=100)
-                if(anglexz<=50)
-                    changeScreenBrightness(80);
-                else changeScreenBrightness(-1);
-            else{
-                if(angleyz <= 50)
-                    changeScreenBrightness(80);
-                else changeScreenBrightness(-1);
+            if (exe == 1){
+                if(80<=anglexy && anglexy<=100)
+                    if(anglexz<=50)
+                        changeScreenBrightness(80);
+                    else changeScreenBrightness(-1);
+                else{
+                    if(angleyz <= 50)
+                        changeScreenBrightness(80);
+                    else changeScreenBrightness(-1);
+                }
             }
 
         }
