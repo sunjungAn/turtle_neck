@@ -110,9 +110,16 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             textView =  findViewById(R.id.textView);
             textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
-            if(angleyz <= 50)
-                changeScreenBrightness(80);
-            else changeScreenBrightness(-1);
+            if(80<=anglexy && anglexy<=100)
+                if(anglexz<=50)
+                    changeScreenBrightness(80);
+                else changeScreenBrightness(-1);
+            else{
+                if(angleyz <= 50)
+                    changeScreenBrightness(80);
+                else changeScreenBrightness(-1);
+            }
+
         }
     }
 
