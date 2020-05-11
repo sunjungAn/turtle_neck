@@ -1,8 +1,10 @@
 package com.example.exam1;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -15,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 public class jiro extends AppCompatActivity implements SensorEventListener{ //SensorEventListener를 사용한다.
 
@@ -38,6 +41,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         toast_btn = findViewById(R.id.toast_btn);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         params = getWindow().getAttributes();
@@ -50,6 +54,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
+                    startService(new Intent(getApplicationContext(), DisplayService.class));
                     execute.setText("중지");
 
                 }
@@ -57,6 +62,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 0;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
+                    stopService(new Intent(getApplicationContext(), DisplayService.class));
                     execute.setText("실행");
                 }
             }
@@ -69,6 +75,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                 toast1.show();
             }
         });
+
 
 
     }
@@ -113,8 +120,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     // consider storing these readings as unit vectors.
     @Override
     public void onSensorChanged(SensorEvent event) {
-        Intent intent = new Intent(getApplicationContext(), MyService.class);
-        startService(intent);//각도가 움직일때 마다 각을 바꿔준다.
+       // Intent intent = new Intent(getApplicationContext(), MyService.class);
+       // startService(intent);//각도가 움직일때 마다 각을 바꿔준다.
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
