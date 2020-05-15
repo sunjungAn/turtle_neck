@@ -41,6 +41,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         toast_btn = findViewById(R.id.toast_btn);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -76,9 +77,30 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             }
         });
 
-
-
+        if(exe == 1)
+        {
+            Intent intent = new Intent(getApplicationContext(), MyService.class);
+            intent.putExtra("command", "show");
+            intent.putExtra("name", "켜짐");
+            startService(intent);
+        }
+        Intent passedIntent = getIntent();
+        processCommand(passedIntent);
     }
+    @Override
+    protected void onNewIntent(Intent intent){
+        processCommand(intent);
+        super.onNewIntent(intent);
+    }
+    private void processCommand(Intent intent)
+    {
+        if(intent != null){
+            String command = intent.getStringExtra("command");
+            String name = intent.getStringExtra("name");
+            Toast.makeText(this, "서비스로부터 전달받은 데이터:"+command+","+name,Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {  //아직 사용X
