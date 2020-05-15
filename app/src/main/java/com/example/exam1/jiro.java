@@ -2,6 +2,9 @@ package com.example.exam1;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -42,7 +45,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
+        //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         toast_btn = findViewById(R.id.toast_btn);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         params = getWindow().getAttributes();
@@ -55,7 +58,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    startService(new Intent(getApplicationContext(), DisplayService.class));
+                    startService(new Intent(getApplicationContext(), MyService.class));
                     execute.setText("중지");
 
                 }
@@ -63,7 +66,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 0;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    stopService(new Intent(getApplicationContext(), DisplayService.class));
+                    stopService(new Intent(getApplicationContext(), MyService.class));
                     execute.setText("실행");
                 }
             }
@@ -190,12 +193,13 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     }
 
 */
-  private void changeScreenBrightness(int value) {
+   public void changeScreenBrightness(int value) {
       Window window = getWindow();
       WindowManager.LayoutParams layoutParams = window.getAttributes();
       layoutParams.screenBrightness = value * 1.0f/255;
       window.setAttributes(layoutParams);
   }
+
 }
 
 

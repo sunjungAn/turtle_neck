@@ -4,11 +4,14 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import static android.content.ContentValues.TAG;
 
 public class MyService extends Service {
+    private WindowManager.LayoutParams params;
     public MyService() {
     }
 
@@ -26,13 +29,21 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand() 호출됨.");
-        Intent showIntent = new Intent(getApplicationContext(), jiro.class);
-        showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        if(intent == null)
+        {
+            return Service.START_STICKY;
+        }
+        else{
+            processCommand(intent);
+        }
+        //Intent showIntent = new Intent(getApplicationContext(), jiro.class);
 
+        /*showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         showIntent.putExtra("command", "show");
         showIntent.putExtra("name", "mike");
+        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
 
-        startActivity(showIntent);
+        startActivity(showIntent);*/
         return super.onStartCommand(intent, flags, startId);
 
 
@@ -45,14 +56,17 @@ public class MyService extends Service {
             Thread.sleep(5000);
         }catch(Exception e){}
 
-        Intent ShowIntent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent ShowIntent = new Intent(getApplicationContext(), jiro.class);
         ShowIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|
                             Intent.FLAG_ACTIVITY_SINGLE_TOP|
                             Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         ShowIntent.putExtra("command","show");
         ShowIntent.putExtra("name",name+"from service");
         startActivity(ShowIntent);
     }
+
+
 
 
     @Override
@@ -60,6 +74,7 @@ public class MyService extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
 
 
 }
