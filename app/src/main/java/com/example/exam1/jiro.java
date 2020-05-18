@@ -179,12 +179,12 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             if (exe == 1){
                 if(80<=anglexy && anglexy<=100)
                     if(anglexz<=50)
-                        changeScreenBrightness(80);
-                    else changeScreenBrightness(-1);
+                        changeScreenBrightness(-1);
+                    else changeScreenBrightness(100);
                 else{
                     if(angleyz <= 50)
-                        changeScreenBrightness(80);
-                    else changeScreenBrightness(-1);
+                        changeScreenBrightness(-1);
+                    else changeScreenBrightness(100);
                 }
             }
 
@@ -210,12 +210,12 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
        Context context = getApplicationContext();
        boolean canWrite = Settings.System.canWrite(context);
        if(canWrite) {
-           float sBrightness = (value * 1.0f / 255);
+           int sBrightness = (value * 225/255);
            Settings.System.putInt(context.getContentResolver(),
                    Settings.System.SCREEN_BRIGHTNESS_MODE,
                    Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
            Settings.System.putInt(context.getContentResolver(),
-                   Settings.System.SCREEN_BRIGHTNESS, (int)sBrightness);
+                   Settings.System.SCREEN_BRIGHTNESS, sBrightness);
        }
        else{
            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
