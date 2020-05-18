@@ -55,9 +55,8 @@ public class MyService extends Service {
         String name = intent.getStringExtra("name");
         Log.d(TAG, "전달받은 데이터:"+command+","+name);
         try {
-            jiro.changeScreenBrightness(80);
-            Thread.sleep(5000);
-
+            //Tread.sleep(5000);
+            //jiro.changeScreenBrightness(80);
         }catch(Exception e){}
 
         Intent ShowIntent = new Intent(getApplicationContext(), jiro.class);

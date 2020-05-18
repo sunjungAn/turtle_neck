@@ -12,13 +12,17 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -203,10 +207,24 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
 
 */
    public void changeScreenBrightness(int value) {
-      Window window = getWindow();
+       Context context = getApplicationContext();
+       boolean canWrite = Settings.System.canWrite(context);
+       if(canWrite) {
+           float sBrightness = (value * 1.0f / 255);
+           Settings.System.putInt(context.getContentResolver(),
+                   Settings.System.SCREEN_BRIGHTNESS_MODE,
+                   Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+           Settings.System.putInt(context.getContentResolver(),
+                   Settings.System.SCREEN_BRIGHTNESS, (int)sBrightness);
+       }
+       else{
+           Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+           context.startActivity(intent);
+       }
+      /*Window window = getWindow();
       WindowManager.LayoutParams layoutParams = window.getAttributes();
       layoutParams.screenBrightness = value * 1.0f/255;
-      window.setAttributes(layoutParams);
+      window.setAttributes(layoutParams);*/
   }
 
 
