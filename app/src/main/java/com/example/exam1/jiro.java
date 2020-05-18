@@ -200,6 +200,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
       window.setAttributes(layoutParams);
   }
 
+
 }
 
 
