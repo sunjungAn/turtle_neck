@@ -11,6 +11,7 @@ import android.widget.Toast;
 import static android.content.ContentValues.TAG;
 
 public class MyService extends Service {
+    jiro jiro = new jiro();
     private WindowManager.LayoutParams params;
     public MyService() {
     }
@@ -53,7 +54,9 @@ public class MyService extends Service {
         String name = intent.getStringExtra("name");
         Log.d(TAG, "전달받은 데이터:"+command+","+name);
         try {
+            jiro.changeScreenBrightness(80);
             Thread.sleep(5000);
+
         }catch(Exception e){}
 
         Intent ShowIntent = new Intent(getApplicationContext(), jiro.class);

@@ -93,7 +93,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         {
             Intent intent = new Intent(getApplicationContext(), MyService.class);
             intent.putExtra("command", "show");
-            intent.putExtra("name", "켜짐");
+            intent.putExtra("name", "start");
             startService(intent);
         }
         Intent passedIntent = getIntent();
