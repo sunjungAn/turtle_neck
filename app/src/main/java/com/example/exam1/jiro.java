@@ -27,6 +27,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     Button toast_btn;
     TextView textView;
     Button execute;
+    Button stretching;
 
     private SensorManager sensorManager; //객체 생성
     static int exe = 0;
@@ -47,6 +48,14 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
 
         //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         toast_btn = findViewById(R.id.toast_btn);
+        stretching = findViewById(R.id.stretching);
+        stretching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                startActivity(new Intent(jiro.this, popup.class));
+            }
+        });
+
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         params = getWindow().getAttributes();
         execute = findViewById(R.id.execute);

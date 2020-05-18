@@ -1,4 +1,4 @@
-package com.example.a20200515_real;
+package com.example.exam1;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

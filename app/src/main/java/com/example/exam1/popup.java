@@ -1,13 +1,14 @@
-package com.example.a20200515_real;
+package com.example.exam1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-
 import com.google.android.material.tabs.TabLayout;
+
 
 public class popup extends AppCompatActivity {
 
@@ -17,7 +18,6 @@ public class popup extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
-
         DisplayMetrics dm  = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
 

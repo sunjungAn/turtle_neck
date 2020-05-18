@@ -1,4 +1,4 @@
-package com.example.a20200515_real;
+package com.example.exam1;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
