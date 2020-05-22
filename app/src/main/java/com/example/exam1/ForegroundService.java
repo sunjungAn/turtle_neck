@@ -22,8 +22,7 @@ public class ForegroundService extends Service {
 
     @Override
     public void onCreate() {
-        android.provider.Settings.System.putInt(getContentResolver(),
-                android.provider.Settings.System.SCREEN_BRIGHTNESS,
+        Settings.System.putInt(getContentResolver(),Settings.System.SCREEN_BRIGHTNESS,
                 80);
         /// start new Activity
         Intent intent = new Intent(getBaseContext(), jiro.class);
@@ -46,7 +45,7 @@ public class ForegroundService extends Service {
                 .build();
 
         startForeground(1, notification);
-        changeScreenBrightness(0);
+      //  changeScreenBrightness(0);
 
         //do heavy work on a background thread
         //stopSelf();
@@ -74,7 +73,7 @@ public class ForegroundService extends Service {
         }
     }
     public void changeScreenBrightness(int value) {
-        Context context = getBaseContext();
+        Context context = getApplicationContext();
         boolean canWrite = Settings.System.canWrite(context);
         if (canWrite) {
             int sBrightness = (value * 225 / 255);
@@ -83,10 +82,9 @@ public class ForegroundService extends Service {
                     Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
             Settings.System.putInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, sBrightness);
-       /* } else {
+        } else {
             Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
             context.startActivity(intent);
-        }*/
         }
     }
 
