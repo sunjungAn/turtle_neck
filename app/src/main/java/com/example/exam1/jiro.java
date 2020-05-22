@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 public class jiro extends AppCompatActivity implements SensorEventListener{ //SensorEventListener를 사용한다.
 
@@ -71,7 +72,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    startService(new Intent(getApplicationContext(), MyService.class));
+                    startService();
                     execute.setText("중지");
 
                 }
@@ -80,6 +81,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
                     stopService(new Intent(getApplicationContext(), MyService.class));
+                    stopService();
                     execute.setText("실행");
                 }
             }
@@ -226,6 +228,15 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
       layoutParams.screenBrightness = value * 1.0f/255;
       window.setAttributes(layoutParams);*/
   }
+    public void startService() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
+        ContextCompat.startForegroundService(this, serviceIntent);
+    }
+    public void stopService() {
+        Intent serviceIntent = new Intent(this, ForegroundService.class);
+        stopService(serviceIntent);
+    }
 
 
 }

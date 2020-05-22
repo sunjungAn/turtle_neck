@@ -16,10 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <service
-            android:name=".MyService"
+            android:name=".ForegroundService"
             android:enabled="true"
             android:exported="true"></service>
-
         <activity android:name=".jiro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
