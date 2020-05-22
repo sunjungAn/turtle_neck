@@ -37,7 +37,7 @@ public class ForegroundService extends Service {
                 .build();
 
         startForeground(1, notification);
-        changeScreenBrightness(80);
+        changeScreenBrightness1(80);
         //do heavy work on a background thread
         //stopSelf();
         return START_NOT_STICKY;
@@ -72,5 +72,19 @@ public class ForegroundService extends Service {
                     Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
             Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, sBrightness);
+    }
+    public void changeScreenBrightness1(int brightness) {
+        int brightnessInt = (int)(brightness*255);
+
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightnessInt);
+
+// Apply brightness by creating a dummy activity
+        Intent intent = new Intent(getBaseContext(), jiro.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("brightness value", brightness);
+        getApplication().startActivity(intent);
+
     }
 }
