@@ -74,7 +74,7 @@ public class ForegroundService extends Service {
         }
     }
     public void changeScreenBrightness(int value) {
-        Context context = getApplicationContext();
+        Context context = getBaseContext();
         boolean canWrite = Settings.System.canWrite(context);
         if (canWrite) {
             int sBrightness = (value * 225 / 255);
