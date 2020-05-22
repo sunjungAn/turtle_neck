@@ -7,6 +7,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
@@ -28,7 +29,26 @@ public class popup extends AppCompatActivity {
         st2_btn.findViewById(R.id.st2_btn);
         st3_btn.findViewById(R.id.st3_btn);
 
+        st1_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+            }
+        });
+
+        st2_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        st3_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
 
 
