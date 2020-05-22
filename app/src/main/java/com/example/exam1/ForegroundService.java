@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -45,6 +46,8 @@ public class ForegroundService extends Service {
                 .build();
 
         startForeground(1, notification);
+        changeScreenBrightness(80);
+
         //do heavy work on a background thread
         //stopSelf();
         return START_NOT_STICKY;
@@ -71,27 +74,19 @@ public class ForegroundService extends Service {
         }
     }
     public void changeScreenBrightness(int value) {
-       // Context context = getApplicationContext();
-        //boolean canWrite = Settings.System.canWrite(context);
+        Context context = getApplicationContext();
+        boolean canWrite = Settings.System.canWrite(context);
+        if (canWrite) {
             int sBrightness = (value * 225 / 255);
-            Settings.System.getInt(getContentResolver(),
+            Settings.System.putInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE,
                     Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-            Settings.System.getInt(getContentResolver(),
+            Settings.System.putInt(context.getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, sBrightness);
+        } else {
+            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
+            context.startActivity(intent);
+        }
     }
-    public void changeScreenBrightness1(int brightness) {
-        int brightnessInt = (int)(brightness*255);
 
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightnessInt);
-
-// Apply brightness by creating a dummy activity
-        Intent intent = new Intent(getBaseContext(), jiro.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("brightness value", brightness);
-        getApplication().startActivity(intent);
-
-    }
 }
