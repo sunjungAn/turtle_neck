@@ -18,9 +18,17 @@ import androidx.core.app.NotificationCompat;
 public class ForegroundService extends Service {
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     jiro jiro = new jiro();
+
     @Override
     public void onCreate() {
-        super.onCreate();
+        android.provider.Settings.System.putInt(getContentResolver(),
+                android.provider.Settings.System.SCREEN_BRIGHTNESS,
+                80);
+        /// start new Activity
+        Intent intent = new Intent(getBaseContext(), jiro.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplication().startActivity(intent);
+      //  super.onCreate();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -37,7 +45,6 @@ public class ForegroundService extends Service {
                 .build();
 
         startForeground(1, notification);
-        changeScreenBrightness1(80);
         //do heavy work on a background thread
         //stopSelf();
         return START_NOT_STICKY;
