@@ -35,7 +35,8 @@ public class ForegroundService extends Service {
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentIntent(pendingIntent)
                 .build();
-        changeScreenBrightness(80);
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS, 80);
         startForeground(1, notification);
 
         //do heavy work on a background thread
