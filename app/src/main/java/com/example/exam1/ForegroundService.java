@@ -24,10 +24,10 @@ public class ForegroundService extends Service {
     public void onCreate() {
         Settings.System.putInt(getContentResolver(),Settings.System.SCREEN_BRIGHTNESS,
                 80);
+       // Intent in = new Intent(this,jiro.class); //it  working...
         /// start new Activity
-        Intent intent = new Intent(getBaseContext(), jiro.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplication().startActivity(intent);
+        //in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //this.startActivity(in);
       //  super.onCreate();
     }
     @Override
