@@ -18,9 +18,17 @@ import androidx.core.app.NotificationCompat;
 public class ForegroundService extends Service {
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     jiro jiro = new jiro();
+
     @Override
     public void onCreate() {
-        super.onCreate();
+        android.provider.Settings.System.putInt(getContentResolver(),
+                android.provider.Settings.System.SCREEN_BRIGHTNESS,
+                80);
+        /// start new Activity
+        Intent intent = new Intent(getBaseContext(), jiro.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        getApplication().startActivity(intent);
+      //  super.onCreate();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -35,9 +43,8 @@ public class ForegroundService extends Service {
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentIntent(pendingIntent)
                 .build();
-        changeScreenBrightness(80);
-        startForeground(1, notification);
 
+        startForeground(1, notification);
         //do heavy work on a background thread
         //stopSelf();
         return START_NOT_STICKY;
@@ -64,18 +71,27 @@ public class ForegroundService extends Service {
         }
     }
     public void changeScreenBrightness(int value) {
-        Context context = getApplicationContext();
-        boolean canWrite = Settings.System.canWrite(context);
-        if (canWrite) {
+       // Context context = getApplicationContext();
+        //boolean canWrite = Settings.System.canWrite(context);
             int sBrightness = (value * 225 / 255);
-            Settings.System.putInt(context.getContentResolver(),
+            Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE,
                     Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-            Settings.System.putInt(context.getContentResolver(),
+            Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, sBrightness);
-        } else {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-            context.startActivity(intent);
-        }
+    }
+    public void changeScreenBrightness1(int brightness) {
+        int brightnessInt = (int)(brightness*255);
+
+        Settings.System.putInt(getContentResolver(),
+                Settings.System.SCREEN_BRIGHTNESS_MODE, Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
+        Settings.System.putInt(getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, brightnessInt);
+
+// Apply brightness by creating a dummy activity
+        Intent intent = new Intent(getBaseContext(), jiro.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("brightness value", brightness);
+        getApplication().startActivity(intent);
+
     }
 }
