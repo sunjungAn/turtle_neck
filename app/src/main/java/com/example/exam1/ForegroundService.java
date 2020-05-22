@@ -35,10 +35,9 @@ public class ForegroundService extends Service {
                 .setSmallIcon(R.drawable.ic_launcher_background)
                 .setContentIntent(pendingIntent)
                 .build();
-        Settings.System.putInt(getContentResolver(),
-                Settings.System.SCREEN_BRIGHTNESS, 80);
-        startForeground(1, notification);
 
+        startForeground(1, notification);
+        changeScreenBrightness(80);
         //do heavy work on a background thread
         //stopSelf();
         return START_NOT_STICKY;
@@ -65,18 +64,13 @@ public class ForegroundService extends Service {
         }
     }
     public void changeScreenBrightness(int value) {
-        Context context = getApplicationContext();
-        boolean canWrite = Settings.System.canWrite(context);
-        if (canWrite) {
+       // Context context = getApplicationContext();
+        //boolean canWrite = Settings.System.canWrite(context);
             int sBrightness = (value * 225 / 255);
-            Settings.System.putInt(context.getContentResolver(),
+            Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE,
                     Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL);
-            Settings.System.putInt(context.getContentResolver(),
+            Settings.System.getInt(getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS, sBrightness);
-        } else {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-            context.startActivity(intent);
-        }
     }
 }
