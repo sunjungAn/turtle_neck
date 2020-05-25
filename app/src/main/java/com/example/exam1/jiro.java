@@ -72,7 +72,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    startService();
+                    Intent intent = new Intent(jiro.this, ForegroundService.class);
+                    startService(intent);
                     execute.setText("중지");
 
                 }
@@ -81,7 +82,6 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
                     stopService(new Intent(getApplicationContext(), MyService.class));
-                    stopService();
                     execute.setText("실행");
                 }
             }
@@ -210,8 +210,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
 */
    public void changeScreenBrightness(int value) {
        Context context = getApplicationContext();
-       boolean canWrite = Settings.System.canWrite(context);
-       if(canWrite) {
+      // boolean canWrite = Settings.System.canWrite(context);
+       if(true) {
            int sBrightness = (value * 225/255);
            Settings.System.putInt(context.getContentResolver(),
                    Settings.System.SCREEN_BRIGHTNESS_MODE,
@@ -228,15 +228,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
       layoutParams.screenBrightness = value * 1.0f/255;
       window.setAttributes(layoutParams);*/
   }
-    public void startService() {
-        Intent serviceIntent = new Intent(this, ForegroundService.class);
-        serviceIntent.putExtra("inputExtra", "Foreground Service Example in Android");
-        ContextCompat.startForegroundService(this, serviceIntent);
-    }
-    public void stopService() {
-        Intent serviceIntent = new Intent(this, ForegroundService.class);
-        stopService(serviceIntent);
-    }
+
 
 
 }

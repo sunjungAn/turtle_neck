@@ -7,39 +7,61 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
+import android.os.Handler;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-import java.util.logging.Handler;
 import java.util.logging.LogRecord;
 import java.util.zip.Inflater;
 
 import static com.example.exam1.jiro.exe;
 
-public class ForegroundService extends Service implements SensorEventListener {
+public class ForegroundService extends Service implements SensorEventListener{
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
-    jiro jiro = new jiro();
-    WindowManager.LayoutParams params= new WindowManager.LayoutParams();
-    Handler handler = new Handler();
+    private View mView;
+    private WindowManager mManager;
+
+    //private WindowManager.LayoutParams params;
+    //private android.os.Handler handler = new android.os.Handler();
 
     @Override
     public void onCreate() {
+        super.onCreate();
+        init();
+        /*LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = mInflater.inflate(R.layout.background, null);
+
+        WindowManager.LayoutParams mParams = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
+
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
+
+                PixelFormat.TRANSLUCENT);
+
+        mManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        mManager.addView(mView, mParams);*/
+
+
        // Intent in = new Intent(this,jiro.class); //it  working...
         /// start new Activity
         //in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //this.startActivity(in);
-      //  super.onCreate();
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -82,10 +104,10 @@ public class ForegroundService extends Service implements SensorEventListener {
             manager.createNotificationChannel(serviceChannel);
         }
     }
-   public void changeScreenBrightness(int value) {
+  public void changeScreenBrightness(int value) {
         Context context = getApplicationContext();
-        boolean canWrite = Settings.System.canWrite(context);
-        if (canWrite) {
+       // boolean canWrite = Settings.System.canWrite(context);
+        if (true) {
             int sBrightness = (value * 225 / 255);
             android.provider.Settings.System.putInt(context.getContentResolver(),
                     android.provider.Settings.System.SCREEN_BRIGHTNESS_MODE,
@@ -140,27 +162,23 @@ public class ForegroundService extends Service implements SensorEventListener {
         }
     }
     public void init() {
-        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        inflater.inflate(R.layout.background, null);
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mView = inflater.inflate(R.layout.background, null);
 
-        WindowManager wm = (WindowManager)getSystemService( Context.WINDOW_SERVICE );
-        Handler handler = new Handler() {
-            @Override
-            public void publish(LogRecord record) {
+        mManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
-            }
+        WindowManager.LayoutParams mParams = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.WRAP_CONTENT,
+                WindowManager.LayoutParams.WRAP_CONTENT,
 
-            @Override
-            public void flush() {
+                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
 
-            }
+                WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
 
-            @Override
-            public void close() throws SecurityException {
+                PixelFormat.TRANSLUCENT);
 
-            }
-        };
-        params= WindowManager.LayoutParams();
+        mManager.addView(mView,mParams);
+
     }
 
 
