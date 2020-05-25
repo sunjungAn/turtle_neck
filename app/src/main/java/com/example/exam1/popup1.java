@@ -18,7 +18,7 @@ public class popup1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_popup);
+        setContentView(R.layout.activity_popup1);
 
         DisplayMetrics dm  = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
