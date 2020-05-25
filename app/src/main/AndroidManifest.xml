@@ -3,8 +3,10 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.exam1">
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"
-        tools:ignore="ProtectedPermissions"/>
+
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
 
     <dist:module dist:instant="true" />
 
@@ -15,10 +17,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".popup3"
+            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".popup2"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
+            android:name=".popup1"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity android:name=".Frag_stretching1_4" />
+        <activity android:name=".Frag_stretching1_3" />
+        <activity android:name=".Frag_stretching1_2" />
+        <activity android:name=".Frag_stretching1_1" />
+
         <service
             android:name=".ForegroundService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
+
         <activity android:name=".jiro">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +42,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".popup"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity
+            android:name=".popup"
+            android:theme="@style/AppTheme.CustomTheme" />
     </application>
 
 </manifest>
