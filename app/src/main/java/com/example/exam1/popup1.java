@@ -13,7 +13,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class popup1 extends AppCompatActivity {
 
-    private FragmentPagerAdapter fragmentPagerAdapter;
+    private FragmentPagerAdapter fragmentPagerAdapter1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,13 @@ public class popup1 extends AppCompatActivity {
         int height = dm.heightPixels;
 
         getWindow().setLayout((int) (width*.8), (int)(height*.6));
+
+        ViewPager viewPager1 = findViewById(R.id.viewPager1);
+        fragmentPagerAdapter1 = new ViewPagerAdapter1(getSupportFragmentManager());
+
+        TabLayout tabLayout1 = findViewById(R.id.tab_layout1);
+        viewPager1.setAdapter(fragmentPagerAdapter1);
+        tabLayout1.setupWithViewPager(viewPager1);
 
     }
 }

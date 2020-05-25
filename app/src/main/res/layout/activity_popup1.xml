@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".popup2">
+    tools:context=".popup1">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout2"
+        android:id="@+id/tab_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/const_vp2"
+        app:layout_constraintBottom_toTopOf="@+id/const_vp1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,16 +37,16 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/const_vp2"
+        android:id="@+id/const_vp1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout2">
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout1">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager2"
+            android:id="@+id/viewPager1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
