@@ -14,21 +14,27 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
+import android.view.LayoutInflater;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
+import java.util.zip.Inflater;
 
 import static com.example.exam1.jiro.exe;
 
 public class ForegroundService extends Service implements SensorEventListener {
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     jiro jiro = new jiro();
+    WindowManager.LayoutParams params= new WindowManager.LayoutParams();
+    Handler handler = new Handler();
 
     @Override
     public void onCreate() {
-        Settings.System.putInt(getContentResolver(),Settings.System.SCREEN_BRIGHTNESS,
-                80);
        // Intent in = new Intent(this,jiro.class); //it  working...
         /// start new Activity
         //in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -132,6 +138,29 @@ public class ForegroundService extends Service implements SensorEventListener {
             }
 
         }
+    }
+    public void init() {
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        inflater.inflate(R.layout.background, null);
+
+        WindowManager wm = (WindowManager)getSystemService( Context.WINDOW_SERVICE );
+        Handler handler = new Handler() {
+            @Override
+            public void publish(LogRecord record) {
+
+            }
+
+            @Override
+            public void flush() {
+
+            }
+
+            @Override
+            public void close() throws SecurityException {
+
+            }
+        };
+        params= WindowManager.LayoutParams();
     }
 
 
