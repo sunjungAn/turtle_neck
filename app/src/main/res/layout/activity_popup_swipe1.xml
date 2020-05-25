@@ -7,10 +7,10 @@
     tools:context=".popup_swipe1">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/tab_layout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/const_vp"
+        app:layout_constraintBottom_toTopOf="@+id/const_vp1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -37,16 +37,16 @@
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/const_vp"
+        android:id="@+id/const_vp1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tab_layout">
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout1">
 
         <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
+            android:id="@+id/viewPager1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
