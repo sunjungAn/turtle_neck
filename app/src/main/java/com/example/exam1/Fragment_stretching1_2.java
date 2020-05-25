@@ -9,18 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class FragMonday extends Fragment {
+public class Fragment_stretching1_1 extends Fragment {
     private View view;
 
-    public static FragMonday newInstance(){
-        FragMonday fragMonday = new FragMonday();
-        return fragMonday;
+    public static Fragment_stretching1_1 newInstance(){
+        Fragment_stretching1_1 fragment_Stretching1_1 = new Fragment_stretching1_1();
+        return fragment_Stretching1_1;
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.frag_monday,container,false);
-
+        view = inflater.inflate(R.layout.frag_str1_1, container, false);
         return view;
     }
 }
