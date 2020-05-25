@@ -7,7 +7,10 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.provider.Settings;
@@ -16,7 +19,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
-public class ForegroundService extends Service {
+import static com.example.exam1.jiro.exe;
+
+public class ForegroundService extends Service implements SensorEventListener {
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     jiro jiro = new jiro();
 
@@ -45,7 +50,6 @@ public class ForegroundService extends Service {
                 .build();
 
         startForeground(1, notification);
-        changeScreenBrightness(80);
 
         //do heavy work on a background thread
         //stopSelf();
@@ -72,7 +76,7 @@ public class ForegroundService extends Service {
             manager.createNotificationChannel(serviceChannel);
         }
     }
-    public void changeScreenBrightness(int value) {
+   public void changeScreenBrightness(int value) {
         Context context = getApplicationContext();
         boolean canWrite = Settings.System.canWrite(context);
         if (canWrite) {
@@ -87,5 +91,48 @@ public class ForegroundService extends Service {
             context.startActivity(intent);
         }
     }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {  //아직 사용X
+        // Do something here if sensor accuracy changes.
+        // You must implement this callback in your code.
+    }
+
+
+    // Get readings from accelerometer and magnetometer. To simplify calculations,
+    // consider storing these readings as unit vectors.
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        // Intent intent = new Intent(getApplicationContext(), MyService.class);
+        // startService(intent);//각도가 움직일때 마다 각을 바꿔준다.
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+        float ax, ay, az, anglexy, anglexz, angleyz;
+
+        ax = x;
+        ay = y;
+        az = z;
+
+        anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));  //radian으로 바꿔준다.
+        anglexz = (float)(Math.atan2(ax, az) / (Math.PI / 180));
+        angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
+
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            if (exe == 1){
+                if(80<=anglexy && anglexy<=100)
+                    if(anglexz<=50)
+                        changeScreenBrightness(-1);
+                    else changeScreenBrightness(100);
+                else{
+                    if(angleyz <= 50)
+                        changeScreenBrightness(-1);
+                    else changeScreenBrightness(100);
+                }
+            }
+
+        }
+    }
+
 
 }
