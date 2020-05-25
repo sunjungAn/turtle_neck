@@ -26,9 +26,9 @@ public class popup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_popup);
 
-        st1_btn.findViewById(R.id.st1_btn);
-        st2_btn.findViewById(R.id.st2_btn);
-        st3_btn.findViewById(R.id.st3_btn);
+        st1_btn = findViewById(R.id.st1_btn);
+        st2_btn = findViewById(R.id.st2_btn);
+        st3_btn = findViewById(R.id.st3_btn);
 
         st1_btn.setOnClickListener(new View.OnClickListener() {
             @Override
