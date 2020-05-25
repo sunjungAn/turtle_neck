@@ -17,8 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".popup3"
-            android:theme="@style/AppTheme.CustomTheme"></activity>
+        <activity android:name=".Frag_stretching3_2"></activity>
+        <activity android:name=".Frag_stretching3_1" />
+        <activity android:name=".Frag_stretching2_2" />
+        <activity android:name=".Frag_stretching2_1" />
+        <activity
+            android:name=".popup3"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".popup2"
             android:theme="@style/AppTheme.CustomTheme" />
