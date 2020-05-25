@@ -1,6 +1,7 @@
 package com.example.exam1;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 public class Fragment_stretching2_1 extends AppCompatActivity {
