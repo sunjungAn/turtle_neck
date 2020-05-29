@@ -19,6 +19,7 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,12 +28,16 @@ import androidx.core.app.NotificationCompat;
 import java.util.logging.LogRecord;
 import java.util.zip.Inflater;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import static android.view.WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY;
 import static com.example.exam1.jiro.exe;
 
 public class ForegroundService extends Service implements SensorEventListener{
     public static final String CHANNEL_ID = "ForegroundServiceChannel";
     private View mView;
     private WindowManager mManager;
+    private WindowManager.LayoutParams params;
 
     //private WindowManager.LayoutParams params;
     //private android.os.Handler handler = new android.os.Handler();
@@ -41,6 +46,7 @@ public class ForegroundService extends Service implements SensorEventListener{
     public void onCreate() {
         super.onCreate();
         init();
+        mManager.addView(mView, params);
         /*LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = mInflater.inflate(R.layout.background, null);
 
@@ -163,22 +169,19 @@ public class ForegroundService extends Service implements SensorEventListener{
     }
     public void init() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mView = inflater.inflate(R.layout.background, null);
+        mView = inflater.from(this).inflate(R.layout.background, null);
 
         mManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
 
-        WindowManager.LayoutParams mParams = new WindowManager.LayoutParams(
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+        params = new WindowManager.LayoutParams(WRAP_CONTENT,
+                WRAP_CONTENT,
 
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                TYPE_SYSTEM_OVERLAY,
 
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
 
                 PixelFormat.TRANSLUCENT);
-
-        mManager.addView(mView,mParams);
-
+        mManager.addView(mView, params);
     }
 
 
