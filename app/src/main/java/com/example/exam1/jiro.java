@@ -174,7 +174,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));  //radian으로 바꿔준다.
         anglexz = (float)(Math.atan2(ax, az) / (Math.PI / 180));
         angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
-
+/*
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             textView =  findViewById(R.id.textView);
             textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
@@ -191,6 +191,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             }
 
         }
+
+ */
     }
 
     // Compute the three orientation angles based on the most recent readings from
