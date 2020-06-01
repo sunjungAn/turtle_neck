@@ -22,6 +22,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
         android:text="고개의 시선을 유지한채\n 점점 뒤로 당겨주세요"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

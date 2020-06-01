@@ -12,8 +12,8 @@
     <TextView
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
-        android:text="Stretching List "
+        android:layout_marginBottom="30dp"
+        android:text="거북목 교정 \nStretching List "
         android:textAlignment="center"
         android:textSize="30dp"
         android:textStyle="bold"></TextView>

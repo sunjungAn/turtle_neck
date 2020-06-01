@@ -25,6 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="63dp"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         android:layout_marginBottom="80dp"
         android:text="왼쪽 손으로 반대쪽 머리를 당겨 \n15초 동안 유지시켜주세요"
         android:textAlignment="center"

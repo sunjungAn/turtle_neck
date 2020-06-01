@@ -23,6 +23,8 @@
         android:layout_marginBottom="80dp"
         android:text="고개를 뒤로 당겨주세요 \n 20초 동안 유지시켜주세요"
         android:textAlignment="center"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -25,6 +25,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="63dp"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         android:layout_marginBottom="80dp"
         android:text="머리와 목을 왼쪽으로 회전하여 \n왼쪽 어깨를 똑바로 쳐다보며 \n20초 동안 유지시켜주세요"
         android:textAlignment="center"

@@ -23,6 +23,8 @@
         android:layout_marginBottom="80dp"
         android:text="정면을 주시하면서 고개를 들어주세요"
         android:textAlignment="center"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -21,6 +21,8 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="80dp"
+        android:textColor="#30375E"
+        android:textStyle="bold"
         android:text="턱을 위로 당깁니다\n정면을 바라봅니다\n20초 동안 유지시켜주세요"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
