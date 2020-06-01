@@ -10,6 +10,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 public class popup3 extends AppCompatActivity {
+    private FragmentPagerAdapter fragmentPagerAdapter3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,5 +25,11 @@ public class popup3 extends AppCompatActivity {
 
         getWindow().setLayout((int) (width*.8), (int)(height*.6));
 
+        ViewPager viewPager3 = findViewById(R.id.viewPager3);
+        fragmentPagerAdapter3 = new ViewPagerAdapter3(getSupportFragmentManager());
+
+        TabLayout tabLayout3 = findViewById(R.id.tab_layout3);
+        viewPager3.setAdapter(fragmentPagerAdapter3);
+        tabLayout3.setupWithViewPager(viewPager3);
     }
 }
