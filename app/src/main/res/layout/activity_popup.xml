@@ -5,26 +5,35 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E3DCC7"
+    android:background="#f4fdf8"
     tools:context=".popup"
     android:gravity="center">
 
 
     <Button
         android:id="@+id/st1_btn"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:background="#4757a6"
+        android:textColor="#f4fdf8"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="STRETCHING1" />
 
     <Button
         android:id="@+id/st2_btn"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:background="#4757a6"
+        android:textColor="#f4fdf8"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="STRETCHING2" />
 
     <Button
         android:id="@+id/st3_btn"
-        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:background="#4757a6"
+        android:textColor="#f4fdf8"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="STRETCHING3" />
 </LinearLayout>
