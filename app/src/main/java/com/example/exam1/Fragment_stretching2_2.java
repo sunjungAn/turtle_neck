@@ -19,7 +19,7 @@ public class Fragment_stretching2_2 extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_fragment_stretching2_1,container,false);
+        view = inflater.inflate(R.layout.activity_fragment_stretching2_2,container,false);
         return view;
     }
 }
