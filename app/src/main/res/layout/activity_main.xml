@@ -7,151 +7,67 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:background="#4757a6"
         android:orientation="vertical">
-
-        <LinearLayout
+        <ImageView
+            android:id="@+id/image1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:weightSum="5"
-            android:orientation="vertical" >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text = "총 사용시간"
-                    android:textSize = "40dp"
-                    android:fontFamily = "@font/imsosobold"
-                    android:layout_marginTop="70dp"
-                    android:gravity="center"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text = "11시간"
-                    android:textSize= "30dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="2"
-                android:orientation="vertical"
-                android:layout_weight="3">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/imsosobold"
-                        android:text = "잘 못된\n사용시간"
-                        android:textSize="25dp"
-                        android:gravity = "center"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/imsosobold"
-                        android:text = "올바른\n사용시간"
-                        android:textSize = "25dp"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    android:layout_weight="1">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text = "100시간"
-                        android:textSize="25dp"
-                        android:gravity = "center"
-                        android:layout_weight="1"/>
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text = "200시간"
-                        android:textSize = "25dp"
-                        android:gravity="center"
-                        android:layout_weight="1"/>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:text="TextView" />
-            <Button
-                android:layout_width="wrap_content"
-                android:id = "@+id/execute"
-                android:layout_height="wrap_content"
-                android:text = "실행"
-                android:textSize = "30dp"
-                android:layout_gravity="center"
-                android:fontFamily="@font/imsosobold"
-                />
-        </LinearLayout>
-        </LinearLayout>
+            android:src="@drawable/turtle6"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="10"
-        android:background="#AB85FF89"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <Button
-            android:id="@+id/stretching"
+        android:background="#f4fdf8"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:backgroundTint="#0085FF89"
-            android:fontFamily="@font/imsosobold"
-            android:text="스트레칭"
-            android:textSize="25dp" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="80dp"
+            >
+            <Button
+                android:id="@+id/execute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text = "start"
+                android:textSize = "30dp"
+                android:background="@drawable/button"
+                android:textColor="#F4F8F8">
+            </Button>
 
-        <Button
-            android:id="@+id/toast_btn"
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:backgroundTint="#0085FF89"
-            android:fontFamily="@font/imsosobold"
-            android:text="통계"
-            android:textSize="25dp" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="60dp"
+            >
+            <Button
+                android:id="@+id/stretching"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button"
+                android:text="stretching"
+                android:textSize="30dp"
+                android:textColor="#F4F8F8"
+
+                >
+            </Button>
+
+        </LinearLayout>
+
     </LinearLayout>
-    </LinearLayout>
+
+
+
+</LinearLayout>
