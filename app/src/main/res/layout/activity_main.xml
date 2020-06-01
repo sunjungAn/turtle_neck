@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text = "start"
                 android:textSize = "30dp"
-                android:background="@drawable/button"
+                android:background="@drawable/turtle"
                 android:textColor="#F4F8F8">
             </Button>
 
@@ -56,7 +56,7 @@
                 android:id="@+id/stretching"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button"
+                android:background="@drawable/turtle"
                 android:text="stretching"
                 android:textSize="30dp"
                 android:textColor="#F4F8F8"
