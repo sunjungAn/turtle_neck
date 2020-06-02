@@ -30,7 +30,6 @@ import androidx.core.content.ContextCompat;
 public class jiro extends AppCompatActivity implements SensorEventListener{ //SensorEventListener를 사용한다.
 
     Button toast_btn;
-    TextView textView;
     Button execute;
     Button stretching;
 
@@ -95,17 +94,17 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             }
         });
 
-        if(exe == 1)
+        /*it if(exe == 1)
         {
             Intent intent = new Intent(getApplicationContext(), MyService.class);
             intent.putExtra("command", "show");
             intent.putExtra("name", "start");
             startService(intent);
-        }
-        Intent passedIntent = getIntent();
-        processCommand(passedIntent);
+        }*/
+        //Intent passedIntent = getIntent();
+       // processCommand(passedIntent);
     }
-    @Override
+    /*@Override
     protected void onNewIntent(Intent intent){
         processCommand(intent);
         super.onNewIntent(intent);
@@ -118,6 +117,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             Toast.makeText(this, "서비스로부터 전달받은 데이터:"+command+","+name,Toast.LENGTH_LONG).show();
         }
     }
+
+     */
 
 
     @Override
@@ -176,8 +177,6 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            textView =  findViewById(R.id.textView);
-            textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
             if (exe == 1){
                 if(80<=anglexy && anglexy<=100)
                     if(anglexz<=50)
