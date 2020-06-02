@@ -72,7 +72,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    Intent intent = new Intent(jiro.this, ForegroundService.class);
+                    //Intent intent = new Intent(jiro.this, ForegroundService.class);
                   //  startService(intent);
                     execute.setText("중지");
 
