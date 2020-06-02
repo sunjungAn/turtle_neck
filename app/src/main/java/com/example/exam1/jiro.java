@@ -73,7 +73,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
                     Intent intent = new Intent(jiro.this, ForegroundService.class);
-                    startService(intent);
+                  //  startService(intent);
                     execute.setText("중지");
 
                 }
@@ -81,7 +81,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 0;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    stopService(new Intent(getApplicationContext(), MyService.class));
+                 //   stopService(new Intent(getApplicationContext(), MyService.class));
                     execute.setText("실행");
                 }
             }
@@ -174,7 +174,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         anglexy = (float)(Math.atan2(ax, ay) / (Math.PI / 180));  //radian으로 바꿔준다.
         anglexz = (float)(Math.atan2(ax, az) / (Math.PI / 180));
         angleyz = (float)(Math.atan2(ay, az) / (Math.PI / 180));
-/*
+
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             textView =  findViewById(R.id.textView);
             textView.setText("value_x"+anglexy+"\nvalue_y"+anglexz+"\nvalue_z"+ angleyz);
@@ -192,7 +192,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
 
         }
 
- */
+
     }
 
     // Compute the three orientation angles based on the most recent readings from
