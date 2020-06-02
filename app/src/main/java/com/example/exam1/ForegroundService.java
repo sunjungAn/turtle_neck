@@ -41,27 +41,23 @@ public class ForegroundService extends Service implements SensorEventListener{
 
     //private WindowManager.LayoutParams params;
     //private android.os.Handler handler = new android.os.Handler();
-
     @Override
     public void onCreate() {
         super.onCreate();
-        init();
-        mManager.addView(mView, params);
-        /*LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater mInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mView = mInflater.inflate(R.layout.background, null);
 
         WindowManager.LayoutParams mParams = new WindowManager.LayoutParams(
                 WindowManager.LayoutParams.WRAP_CONTENT,
                 WindowManager.LayoutParams.WRAP_CONTENT,
 
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,
+                WindowManager.LayoutParams.TYPE_ACCESSIBILITY_OVERLAY,
 
                 WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH,
 
                 PixelFormat.TRANSLUCENT);
-
         mManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        mManager.addView(mView, mParams);*/
+        mManager.addView(mView, mParams);
 
 
        // Intent in = new Intent(this,jiro.class); //it  working...

@@ -50,7 +50,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.FOREGROUND_SERVICE}, PackageManager.PERMISSION_GRANTED);
         toast_btn = findViewById(R.id.toast_btn);
         stretching = findViewById(R.id.stretching);
         stretching.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +71,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 1;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 시작됩니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                    //Intent intent = new Intent(jiro.this, ForegroundService.class);
-                  //  startService(intent);
+                    Intent intent = new Intent(jiro.this, ForegroundService.class);
+                    startService(intent);
                     execute.setText("중지");
 
                 }
@@ -80,7 +80,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
                     exe = 0;
                     Toast toast1 = Toast.makeText(jiro.this, "화면 밝기 기능이 종료되었습니다.", Toast.LENGTH_LONG);
                     toast1.show();
-                 //   stopService(new Intent(getApplicationContext(), MyService.class));
+                    stopService(new Intent(getApplicationContext(), MyService.class));
                     execute.setText("실행");
                 }
             }
@@ -94,17 +94,17 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
             }
         });
 
-        /*it if(exe == 1)
+        if(exe == 1)
         {
             Intent intent = new Intent(getApplicationContext(), MyService.class);
             intent.putExtra("command", "show");
             intent.putExtra("name", "start");
             startService(intent);
-        }*/
-        //Intent passedIntent = getIntent();
-       // processCommand(passedIntent);
+        }
+        Intent passedIntent = getIntent();
+        processCommand(passedIntent);
     }
-    /*@Override
+    @Override
     protected void onNewIntent(Intent intent){
         processCommand(intent);
         super.onNewIntent(intent);
@@ -118,7 +118,7 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
         }
     }
 
-     */
+
 
 
     @Override
@@ -161,8 +161,8 @@ public class jiro extends AppCompatActivity implements SensorEventListener{ //Se
     // consider storing these readings as unit vectors.
     @Override
     public void onSensorChanged(SensorEvent event) {
-       // Intent intent = new Intent(getApplicationContext(), MyService.class);
-       // startService(intent);//각도가 움직일때 마다 각을 바꿔준다.
+        //Intent intent = new Intent(getApplicationContext(), MyService.class);
+        // startService(intent);//각도가 움직일때 마다 각을 바꿔준다.
         float x = event.values[0];
         float y = event.values[1];
         float z = event.values[2];
